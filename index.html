@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Aria</title>
+        <script src="./js/Player.js"></script>
+        <script src="https://unpkg.com/phosphor-icons"></script>
+        <link rel="stylesheet" href="./main.css">
+
+    </head>
+    <body onload="sliderUpdate()">
+        <div class="navbar">
+            <button id="logoButton"><h2 id="logo">Aria</h2></button>
+
+            <div class="controls">
+                <ul class="navigation">
+                    <li><button class="navButtons">Player</button></li>
+                    <li><button class="navButtons">Search</button></li>
+                    <li><button class="navButtons">Playlist</button></li>
+                    <li><button class="navButtons">Settings</button></li>
+                </ul>
+            </div>
+
+            <div class="user">
+                <li><button class="userButton">User</button></li>
+            </div>
+        </div>
+
+        <div class="content" id="content">
+            <h1 style="font-size: 150px; margin: 0px; padding: 0px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ex beatae, iusto voluptatem incidunt veritatis distinctio dignissimos maiores molestiae excepturi accusantium totam eius non error, quam id ipsum, possimus similique!</h1>
+        </div>
+
+        <div class="player" id="player">
+            <div class="nowPlaying" id="nowPlaying">
+                <h2 id="nowPlayingText">Glimpse of Us</h2>
+            </div>
+
+            <div class="playerControls" id="playerControls">
+                <button class="playerButton" id="previousButton"><h2><i class="ph-skip-back"></i></h2></button>
+                <button class="playerButton" id="playButton"><h2><i class="ph-play"></i></h2></button>
+                <button class="playerButton" id="nextButton"><h2><i class="ph-skip-forward"></i></h2></button>
+            </div>
+
+            <div class="playerOptions" id="playerOptions">
+
+                <button class="playerOptionsButton" id="heartButton"><h2><i class="ph-heart"></i></h2></button>
+                <button class="playerOptionsButton" id="playlistButton"><h2><i class="ph-list-plus"></i></h2></button>
+                <button class="playerOptionsButton" id="loopButton"><h2><i class="ph-repeat"></i></h2></button>
+
+                <button class="playerOptionsButton" id="volumeButton" onclick="changeVolumeState()">
+                    <h2>
+                        <i class="ph-speaker-high volumeIcon" id="volumeIcon-high" style="display: none"></i>
+                        <i class="ph-speaker-none volumeIcon" id="volumeIcon-none" style="display: none"></i>
+                        <i class="ph-speaker-low volumeIcon" id="volumeIcon-low" style="display: none"></i>
+                    </h2>
+                </button>
+                <div class="volumeRangeDiv">
+                    <input id="volumeRange" type="range" min="0" max="100" value="50" height="10%" class="volumeRange" oninput="sliderUpdate(false)">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
