@@ -1,74 +1,134 @@
-const User = {
-    signed_in: false,
-    
-};
-const Settings = {
-    //volume Settings:
-    volumeState: "low",
-    currentVolume: 50,
-    prevVolume: 50,
-};
+class Player{
+    constructor(){
+        //volume Settings
+        this.volumeState = "low";
+        this.currentVolume = 50;
+        this.prevVolume = 50;
 
-function sliderUpdate(forceChange, val, state){
-    if(forceChange){
-        const slider = document.getElementById("volumeRange");
+        //current playing music related data members
 
-        slider.style.background = `linear-gradient(to right, #00B2FF ${(val/slider.max)*100}%, #fff ${(val/slider.max)*100}%)`;
-        Array.from(document.getElementsByClassName("volumeIcon")).forEach((element) => {element.style.display = "none"});
-        document.getElementById(`volumeIcon-${state}`).style.display = "block";
-        slider.value = val;
+        //booleans
+        this.isPlaying = false;
+        this.isPaused = false;
+        this.repeat = false;
 
-    }else{
-        const slider = document.getElementById("volumeRange");
-        slider.style.background = `linear-gradient(to right, #00B2FF ${(slider.value/slider.max)*100}%, #fff ${(slider.value/slider.max)*100}%)`;
+        //music details
+        this.name = "";
+    };
 
-        //changing the volume value in Settings
-        Settings.prevVolume = Settings.currentVolume;
-        Settings.currentVolume = parseInt(slider.value);
+    //volume related functions
+    changeVolume(to){
+        const volumeSlider = document.getElementById("volumeRange");
+        const prevVolumeState = this.volumeState;
+        const sliderVal = volumeSlider.valueAsNumber;
+        const currVolumeState = to||to===0?(to === 0? "none": (to>=50 && to<=100? "high":"low")):(sliderVal === 0? "none": (sliderVal>=50 && sliderVal<=100? "high":"low"));
 
-        
-        const icons = document.getElementsByClassName("volumeIcon");
-        Array.from(icons).forEach((element) => {element.style.display = "none"});
-        
-        if(parseInt(slider.value) === 0){
-            const volumeIcon = document.getElementById("volumeIcon-none");
-            volumeIcon.style.display = "block";
-            Settings.volumeState = "none";
-            
-        }else if(parseInt(slider.value) <= 50 && parseInt(slider.value) > 0){
-            const volumeIcon = document.getElementById("volumeIcon-low");
-            volumeIcon.style.display = "block";
-            Settings.volumeState = "low";
+        //checking if the value of to is undefined, if undefined which means the html page is calling the function.
+        to||to===0?volumeSlider.value = to: to = sliderVal;
 
-        }else if(parseInt(slider.value) > 50 && parseInt(slider.value) <=100){
-            const volumeIcon = document.getElementById("volumeIcon-high");
-            volumeIcon.style.display = "block";
-            Settings.volumeState = "high";
+        this.volumeState = currVolumeState;
+        this.prevVolume = this.currentVolume;
+        this.currentVolume = to;
 
-        }else{
-            console.log("what " + slider.value + ` ${typeof(slider.value)}`);
+        //updating the slider value
+        volumeSlider.style.background = `linear-gradient(to right, #00B2FF ${(to/volumeSlider.max)*100}%, #fff ${(to/volumeSlider.max)*100}%)`;
+
+        //changing the icon after the volume has changed
+        if(prevVolumeState !== currVolumeState){
+            Array.from(document.getElementsByClassName("volumeIcon")).forEach((element) => {element.style.display = "none"});
+            document.getElementById(`volumeIcon-${currVolumeState}`).style.display = "block";
         };
-    }
+    };
+    
+    changeVolumeState(){
+        const state = this.volumeState;
+        
+        (state==="low")||(state==="high")?
+            this.changeVolume(0):
+            this.changeVolume(this.prevVolume);
+    };
 };
 
-function changeVolumeState(){
-    const currVolume = Settings.currentVolume;
-    const state = Settings.volumeState;
-    const prev = Settings.prevVolume;
+const Settings = {
+    currentPage: "",
+    currentPageHeader: "",
+};
 
-    if(state === "low" || state === "high"){
-        sliderUpdate(true, 0, "none");
+const User = {
+    signed_in: true,
 
-        Settings.volumeState = "none";
-        Settings.prevVolume = currVolume;
-        Settings.currentVolume = 0;
+    //details
+    name: "Advic",
+    id: 0,
+    mail: "",
+};
 
-    }else if(state === "none"){
-        sliderUpdate(true, prev, prev === 0? "none": prev>=50 && prev<=100? "high":"low");
+const player = new Player();
 
-        Settings.currentVolume = Settings.prevVolume;
-        Settings.volumeState = prev === 0? "none": prev>=50 && prev<=100? "high":"low";
-        Settings.prevVolume = 0;
+//executing this function once the page has loaded
+function onDocLoad(){
+    if(!User.signed_in){
+        console.log("User is not signed in");
+        changePage("userPage");
+        checkUserPageType();
 
-    }
-}
+        //redirect the user to the 'userpage' and ask the user to login there
+        //i've not added the code for this right now because i've to check with other pages too lol 
+    }else{
+        changePage("playerPage");
+        changeUserName();
+    };
+};
+
+//functions related for changing the page
+function changePage(page){
+    if(Settings.currentPage !== page){
+        const pageHeader = page.replace("Page", "Nav");
+        Settings.currentPage!==""?document.getElementById(Settings.currentPage).style.display = "none":null;
+        Settings.currentPageHeader!==""?document.getElementById(Settings.currentPageHeader).style.color = "#fff":null;
+
+        document.getElementById(page).style.display = "block";
+        document.getElementById(pageHeader).style.color = "#00B2FF";
+
+        Settings.currentPage = page;
+        Settings.currentPageHeader = pageHeader;
+    }else{return};
+};
+
+function changePageMan(page){
+    if(Settings.currentPage == page){
+        return
+    }else{
+        if(!User.signed_in){
+            alert("You're not logged in, to log in/sign up just follow the steps given on this page, in order to access the website.");
+        }else{
+            const pageHeader = page.replace("Page", "Nav");
+
+            Settings.currentPage!==""?document.getElementById(Settings.currentPage).style.display = "none":null;
+            Settings.currentPageHeader!==""?document.getElementById(Settings.currentPageHeader).style.color = "#fff":null;
+
+            document.getElementById(page).style.display = "block";
+            document.getElementById(pageHeader).style.color = "#00B2FF";
+
+            Settings.currentPage = page;
+            Settings.currentPageHeader = pageHeader;
+        };
+    };
+};
+
+function checkUserPageType(){
+    if(User.signed_in){
+        //making the div visible
+        document.getElementById("loginedUser").style.display = "block";
+    }else{
+        //making the div visible
+        document.getElementById("nonLoginedUser").style.display = "block";
+    };
+};
+
+function changeUserName(){
+    if(User.signed_in){
+        console.log("why isn't this working");
+        document.getElementById("userNav").innerHTML = User.name;
+    };
+};
