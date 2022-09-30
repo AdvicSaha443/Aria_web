@@ -11,9 +11,6 @@ class Player{
         this.isPlaying = false;
         this.isPaused = false;
         this.repeat = false;
-
-        //music details
-        this.name = "";
     };
 
     //volume related functions
