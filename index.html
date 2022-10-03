@@ -3,26 +3,27 @@
     <head>
 
         <title>Aria</title>
-        <script src="./js/Player.js"></script>
-        <script src="https://unpkg.com/phosphor-icons"></script>
-        <link rel="stylesheet" href="./main.css">
 
+        <script defer src="./js/index.js" type="module"></script>
+        <script src="https://unpkg.com/phosphor-icons"></script>
+
+        <link rel="stylesheet" href="./main.css">
     </head>
-    <body onload="onDocLoad(); player.changeVolume()">
+    <body>
         <div class="navbar">
             <button id="logoButton"><h2 id="logo">Aria</h2></button>
 
             <div class="controls">
                 <ul class="navigation">
-                    <li><button id="playerNav" class="navButtons" onclick="changePageMan('playerPage')">Player</button></li>
-                    <li><button id="searchNav" class="navButtons" onclick="changePageMan('searchPage')">Search</button></li>
-                    <li><button id="playlistNav" class="navButtons" onclick="changePageMan('playlistPage')">Playlist</button></li>
-                    <li><button id="settingsNav" class="navButtons" onclick="changePageMan('settingsPage')">Settings</button></li>
+                    <li><button id="playerNav" class="navButtons">Player</button></li>
+                    <li><button id="searchNav" class="navButtons">Search</button></li>
+                    <li><button id="playlistNav" class="navButtons">Playlist</button></li>
+                    <li><button id="settingsNav" class="navButtons">Settings</button></li>
                 </ul>
             </div>
 
             <div class="user">
-                <li><button id="userNav" class="userButton" onclick="changePageMan('userPage'); checkUserPageType();">User</button></li>
+                <li><button id="userNav" class="userButton navButtons">User</button></li>
             </div>
         </div>
 
@@ -59,7 +60,8 @@
                 </div>
 
                 <div class="nonLoginedUser" id="nonLoginedUser" style="display: none">
-                    You're not logged in
+                    You're not logged in <br>
+                    <button id="loginButton">Login</button>
                 </div>
             </div>
         </div>
@@ -86,7 +88,7 @@
                     <button class="playerOptionsButton" id="playlistButton"><h2><i class="ph-list-plus"></i></h2></button>
                     <button class="playerOptionsButton" id="loopButton"><h2><i class="ph-repeat"></i></h2></button>
 
-                    <button class="playerOptionsButton" id="volumeButton" onclick="player.changeVolumeState()">
+                    <button class="playerOptionsButton" id="volumeButton">
                         <h2>
                             <i class="ph-speaker-high volumeIcon" id="volumeIcon-high" style="display: none"></i>
                             <i class="ph-speaker-none volumeIcon" id="volumeIcon-none" style="display: none"></i>
@@ -94,7 +96,7 @@
                         </h2>
                     </button>
                     <div class="volumeRangeDiv">
-                        <input id="volumeRange" type="range" min="0" max="100" value="50" height="10%" class="volumeRange" oninput="player.changeVolume()">
+                        <input id="volumeRange" type="range" min="0" max="100" value="50" height="10%" class="volumeRange">
                     </div>
                 </div>
             </div>
