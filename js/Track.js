@@ -6,7 +6,6 @@ class Track{
         this.author = "";
 
         this.duration = 0;
-        
     };
 };
 

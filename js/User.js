@@ -8,6 +8,7 @@ class UserBase{
         this.mail = "";
 
         this.logged = true;
+        //create some type of functions for letting the user log in
 
         this.addEventListener();
     };

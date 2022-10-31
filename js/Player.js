@@ -69,7 +69,7 @@ class PlayerBase{
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': '',
+                'X-RapidAPI-Key': 'c468419f8emshb4f2ffc21f4ba96p185eb6jsn4ee5ccc1f13b',
                 'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
             }
         };
@@ -87,6 +87,24 @@ class PlayerBase{
         });
 
         return data;
+    };
+
+    //MUSIC PLAYERS RELATED COMMANDS
+    playTrack(data){
+        console.log(data);
+        console.log(data.title + " PLAY FUNCTION");
+    };
+
+    appendToQueue(data){
+        console.log(data.title + " QUEUE FUNCTION");
+    };
+
+    heartTrack(data){
+        console.log(data.title + " HEART FUNCTION");
+    };
+
+    AddTrackToPlaylist(data){
+        console.log(data.title + " ADD TO PLAYLIST FUNCTION");
     };
 
     //event listeners 
