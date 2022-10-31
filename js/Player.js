@@ -1,9 +1,12 @@
-export default class Player{
+class PlayerBase{
     constructor(){
         //volume Settings
         this.volumeState = "low";
         this.currentVolume = 50;
         this.prevVolume = 50;
+
+        //search related values
+        this.prevSearchQuery = "";
 
         //current playing music related data members
 
@@ -48,14 +51,86 @@ export default class Player{
             this.changeVolume(this.prevVolume);
     };
 
+    //hiding bottom player
+    changeBottomPlayerState(hide, comp){
+        if(hide){
+            if(comp){
+                document.getElementById("player").style.display = "none";
+            }else{
+                //make it like kinda like they can make it visible again
+            };
+        }else{
+            document.getElementById("player").style.display = "block";
+        };
+    };
+
+    //api search command
+    async searchTracks(query){
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '',
+                'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
+            }
+        };
+
+        var data;
+        
+        await fetch(`https://shazam.p.rapidapi.com/search?term=${query}&locale=en-US&offset=0&limit=5`, options)
+        .then((response) => {
+            data = response.json();
+            console.log(data);
+        })
+        .catch((err) => {
+            console.error(err);
+            return false;
+        });
+
+        return data;
+    };
+
+    //event listeners 
     addEventListeners(){
         //page even listeners
-        Array.from(document.getElementsByClassName("controls"))
+        //Array.from(document.getElementsByClassName("controls"))
 
         //volume range even listener
         document.getElementById("volumeRange").addEventListener("input", () => {this.changeVolume()});
         document.getElementById("volumeButton").addEventListener("click", () => {this.changeVolumeState()});
 
+        //keyboard event listeners
+        document.addEventListener("keydown", (ev) => {
+            if(ev.target.nodeName === "INPUT") return;
 
-    }
+            switch(ev.key){
+                case " ":
+                    console.log("pause");
+                    break;
+                
+                //volume
+                case "ArrowUp":
+                    console.log("volume up");
+                    break;
+
+                case "ArrowDown":
+                    console.log("volume down");
+                    break;
+                
+                case "m":
+                    console.log("mute");
+                    break;
+                
+                case "s":
+                    console.log("search pop up");
+                    break;
+                
+                //play list related options
+                case "a":
+                    console.log("something related for adding it to a playlist ");
+                    break;
+            };
+        });
+    };
 };
+
+export const player = new PlayerBase();

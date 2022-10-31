@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <title>Aria</title>
 
-        <script defer src="./js/_index.js" type="module"></script>
         <script src="https://unpkg.com/phosphor-icons"></script>
-
         <link rel="stylesheet" href="./main.css">
+        <script src="./js/_index.js" type="module"></script>
     </head>
     <body>
         <div class="navbar">
@@ -40,8 +38,29 @@
             </div>
 
             <div class="searchPage Page" id="searchPage" style="display: none">
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa doloremque sed! Quasi enim ipsum esse libero temporibus dolor eius quia officia quod dolorum sit possimus maiores soluta, beatae quas?</h1>
-                <h2>Search PAGE</h2>
+                <div class="searchPageContent" id="searchPageContent">
+                    <div class="musicSearchDiv" id="musicSearchDiv">
+                        <input id="musicSearchInput" class="musicSearchInput" type="text">
+                        <button class="musicSearchButton" id="musicSearchButton"><h2><i class="ph-magnifying-glass"></i></h2></button>
+
+                    </div>
+                    <div class="searchPageSubContent" id="searchPageSubContent">
+                        <li>
+                            <div class="leftContent">
+                                <h2>Moonlight</h2>
+                                <h3>dhruv</h3>
+                            </div>
+
+                            <div class="rightContent">
+                                <button><h2><i class="ph-play"></i></h2></button>
+                                <button><h2><i class="ph-microphone-stage"></i></h2></button>
+                                <button><h2><i class="ph-heart"></i></h2></button>
+                                <button><h2><i class="ph-list-plus"></i></h2></button>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+                
             </div>
 
             <div class="playlistPage Page" id="playlistPage" style="display: none">
@@ -62,13 +81,14 @@
                 <div class="nonLoginedUser" id="nonLoginedUser" style="display: none">
                     You're not logged in <br>
                     <button id="loginButton">Login</button>
+                    <input type="text" id="LoginPageInput">
                 </div>
             </div>
         </div>
 
         <div class="player" id="player">
             <div class="musicSlider" id="musicSlider">
-                <input id="SliderInput" class="SliderInput" type="range" min="0" max="100" value="50" height="100%" oninput="">
+                <input id="SliderInput" class="SliderInput" type="range" min="0" max="100" value="50" height="100%" oninput="javascript: console.log('hello');">
             </div>
 
             <div class="bottomPlayer" id="bottomPlayer">
