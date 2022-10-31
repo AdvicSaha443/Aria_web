@@ -1,6 +1,7 @@
 import {player} from "./Player.js";
 import {user} from "./User.js";
 import {settings} from "./Settings.js";
+import {page} from "./Page.js";
 
 //adding event listeners
 settings.addEventListeners(user.logged);

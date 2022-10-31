@@ -10,7 +10,6 @@ class Page{
         var searchInput = document.getElementById("musicSearchInput");
         searchInput.addEventListener('keydown', async (ev) => {
             if(ev.key == "Enter"){
-
                 var val = searchInput.value;
                 if(val == " " || val == "" || val == null || val == undefined || val == player.prevSearchQuery) return;
                 else{
@@ -31,7 +30,15 @@ class Page{
             var val = searchInput.value;
             if(val == " " || val == "" || val == null || val == undefined || val == player.prevSearchQuery) return;
 
-            const response = player.searchTracks(val);
+            await player.searchTracks(val).then((response) => {
+                console.log(response);
+
+                //tracks
+                Array.from(document.getElementsByClassName("searchPageTrackTile")).forEach(elem => elem.remove());
+                Array.from(response.tracks.hits).forEach((elem) => {
+                    this.appendMusicTiles("track", elem);
+                });
+            });
         });
     };
 
