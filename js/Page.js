@@ -18,6 +18,7 @@ class Page{
 
                         //removing previous tiles
                         Array.from(document.getElementsByClassName("searchPageTrackTile")).forEach(elem => elem.remove());
+                        Array.from(document.getElementsByClassName("searchPageAuthorTile")).forEach(elem => elem.remove());
 
                         //tracks
                         Array.from(response.tracks.hits).forEach((elem) => {
@@ -42,10 +43,16 @@ class Page{
 
                 //removing previous tiles
                 Array.from(document.getElementsByClassName("searchPageTrackTile")).forEach(elem => elem.remove());
+                Array.from(document.getElementsByClassName("searchPageAuthorTile")).forEach(elem => elem.remove());
 
                 //tracks
                 Array.from(response.tracks.hits).forEach((elem) => {
                     this.appendMusicTiles("track", elem);
+                });
+
+                //authors
+                Array.from(response.artists.hits).forEach((elem) => {
+                    this.appendAuthorTiles(elem.artist);
                 });
             });
         });
@@ -124,6 +131,7 @@ class Page{
         const page = document.getElementById("searchPageSubArtistsContent");
 
         const child = document.createElement("li");
+        child.className = "searchPageAuthorTile";
 
         const image = document.createElement("img");
         image.src = author.avatar;

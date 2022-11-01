@@ -2,9 +2,11 @@ import {player} from "./Player.js";
 import {user} from "./User.js";
 import {settings} from "./Settings.js";
 import {page} from "./Page.js";
+import {data} from "./Data.js";
 
 //adding event listeners
 settings.addEventListeners(user.logged);
+data.loadPlaylist();
 console.log(player.volumeState);
 
 window.onload = () => {
