@@ -188,7 +188,9 @@ li{
 
 /*SEARCH PAGE SUB CONTENT  - LIST*/
 
-.searchPageSubContent{
+/*TRACKS*/
+
+.searchPageSubTracksContent{
     display: flex;
     flex-direction: column;
     overflow: scroll;
@@ -202,7 +204,7 @@ li{
     background: rgb(49, 43, 43);
 }
 
-.searchPageSubContent li{
+.searchPageSubTracksContent li{
     height: 75px;
 
     background: #fff;
@@ -217,14 +219,14 @@ li{
     justify-content: space-between;
 }
 
-.searchPageSubContent li .leftContent{
+.searchPageSubTracksContent li .leftContent{
     margin: 0px;
     padding: 0px;
 
     display: flex;
 }
 
-.searchPageSubContent li .leftContent img{
+.searchPageSubTracksContent li .leftContent img{
     margin: 0px;
     padding: 0px;
 }
@@ -239,13 +241,13 @@ li{
     align-items: center;
 }
 
-.searchPageSubContent li .leftContent h2{
+.searchPageSubTracksContent li .leftContent h2{
     margin: 0;
     padding: 0;
 }
 
 
-.searchPageSubContent li .rightContent{
+.searchPageSubTracksContent li .rightContent{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -262,6 +264,42 @@ li{
     padding: 0px;
 
     padding-right: 10px;
+}
+
+/*ARTISTS*/
+.searchPageSubArtistsContent{
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+
+    margin: 0px;
+    padding: 0px;
+}
+
+.searchPageSubArtistsContent li{
+    display: flex;
+    justify-content: center;
+}
+
+.searchPageSubArtistsContent li div{
+    width: fit-content;
+    height: fit-content;
+
+    margin: 0;
+    padding: 0;
+}
+
+.searchPageSubArtistsContent li div img{
+    width: 30%;
+    height: auto;
+}
+
+.searchPageSubArtistsContent li div h3{
+    margin: 0;
+    padding: 0;
+
+    color: #fff;
+    width: fit-content;
 }
 
 

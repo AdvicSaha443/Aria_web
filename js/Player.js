@@ -69,7 +69,7 @@ class PlayerBase{
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'c468419f8emshb4f2ffc21f4ba96p185eb6jsn4ee5ccc1f13b',
+                'X-RapidAPI-Key': '02eef9a4a7msh525f4f469486b12p1553eajsn21901f45d9cd',
                 'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
             }
         };
@@ -113,7 +113,14 @@ class PlayerBase{
         //Array.from(document.getElementsByClassName("controls"))
 
         //volume range even listener
-        document.getElementById("volumeRange").addEventListener("input", () => {this.changeVolume()});
+        var volumeRange = document.getElementById("volumeRange");
+        volumeRange.addEventListener("input", () => {this.changeVolume()});
+
+        //doesn't seem to work
+        volumeRange.addEventListener("scroll", (ev) => {
+            console.log(ev.type);
+        });
+        
         document.getElementById("volumeButton").addEventListener("click", () => {this.changeVolumeState()});
 
         //keyboard event listeners
@@ -140,6 +147,10 @@ class PlayerBase{
                 
                 case "s":
                     console.log("search pop up");
+                    break;
+
+                case "Escape":
+                    console.log("settings pop up and other commands as well");
                     break;
                 
                 //play list related options

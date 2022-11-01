@@ -16,10 +16,17 @@ class Page{
                     await player.searchTracks(val).then((response) => {
                         console.log(response);
 
-                        //tracks
+                        //removing previous tiles
                         Array.from(document.getElementsByClassName("searchPageTrackTile")).forEach(elem => elem.remove());
+
+                        //tracks
                         Array.from(response.tracks.hits).forEach((elem) => {
-                            this.appendMusicTiles("track", elem);
+                            this.appendTrackTiles(elem);
+                        });
+
+                        //authors
+                        Array.from(response.artists.hits).forEach((elem) => {
+                            this.appendAuthorTiles(elem.artist);
                         });
                     });
                 };
@@ -33,8 +40,10 @@ class Page{
             await player.searchTracks(val).then((response) => {
                 console.log(response);
 
-                //tracks
+                //removing previous tiles
                 Array.from(document.getElementsByClassName("searchPageTrackTile")).forEach(elem => elem.remove());
+
+                //tracks
                 Array.from(response.tracks.hits).forEach((elem) => {
                     this.appendMusicTiles("track", elem);
                 });
@@ -45,8 +54,8 @@ class Page{
     // SEARCH PAGE - APPENDING TILES
 
     //for appending resutls tiles in search page
-    appendMusicTiles(type, data){
-        const page = document.getElementById("searchPageSubContent");
+    appendTrackTiles(data){
+        const page = document.getElementById("searchPageSubTracksContent");
 
         const child = document.createElement("li");
         const leftDiv = document.createElement("div");
@@ -108,6 +117,26 @@ class Page{
         child.appendChild(leftDiv);
         child.appendChild(rightDiv);
 
+        page.appendChild(child);
+    };
+
+    appendAuthorTiles(author){
+        const page = document.getElementById("searchPageSubArtistsContent");
+
+        const child = document.createElement("li");
+
+        const image = document.createElement("img");
+        image.src = author.avatar;
+        image.style.borderRadius = "100%";
+
+        const text = document.createElement("h3");
+        text.innerHTML = author.name;
+        
+        const authorDiv = document.createElement("div");
+        authorDiv.appendChild(image);
+        authorDiv.appendChild(text);
+
+        child.appendChild(authorDiv);
         page.appendChild(child);
     };
 };
