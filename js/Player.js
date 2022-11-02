@@ -9,11 +9,20 @@ class PlayerBase{
         this.prevSearchQuery = "";
 
         //current playing music related data members
+        this.currentTrack = {
+            title: "Can't take my eyes off you",
+        };
+
+        //queue related data members
+        this.queue = [];
+        this.history = [];
+        this.position = 0;
 
         //booleans
         this.isPlaying = false;
         this.isPaused = false;
-        this.repeat = false;
+        this.repeatTrack = false;
+        this.repeatPlaylist = false;
 
         this.changeVolume();
         this.addEventListeners();
@@ -158,6 +167,33 @@ class PlayerBase{
                     console.log("something related for adding it to a playlist ");
                     break;
             };
+        });
+
+        document.getElementById("heartButton").addEventListener("click", () => {this.heartTrack(this.currentTrack)});
+        document.getElementById("playlistButton").addEventListener("click", () => {this.AddTrackToPlaylist(this.currentTrack)});
+
+        var loopButton = document.getElementById("loopButton");
+        Array.from(document.getElementsByClassName("loopBUTTON")).forEach(elem => {
+            elem.addEventListener("click", () => {
+                console.log("hello");
+            //handling loop button click
+                if(this.repeatTrack){
+
+                    //changing button state
+                    document.getElementById("loopButton-once").style.display = "none";
+                    loopButton.style.display = "block";
+
+                    //changing data members:
+                    this.repeatTrack = true;
+                }else{
+
+                    //changing button state
+                    document.getElementById("loopButtonOnce").style.display = "block";
+                    document.getElementById("loopButton").style.display = "none";
+
+                    this.repeatTrack = false;
+                };
+            });
         });
     };
 };
