@@ -5,9 +5,41 @@ body, html{
     padding: 0;
     height: 100%;
 
+    box-sizing: border-box;
+
     display: flex;
     flex-direction: column;
     justify-items: auto;
+};
+
+/*MODAL*/
+
+.btn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: pink;
+    font-size: 20px;
+    color: white;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+  
+#popUpBox{
+    width: 500px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    padding: 10px;
+    text-align: center;
+    display: none;
 }
 
 button{
@@ -334,6 +366,7 @@ li{
     display: flex;
     justify-content: center;
 
+    /*gotta see about this thing*/
     -webkit-appearance: none;
 }
 

@@ -1,0 +1,64 @@
+{
+    "playlist1": {
+        "name": "rapunzel",
+        "id": "41400",
+        "artistPlaylist": true,
+
+        "length": 8,
+        "tracks": {
+            "grateful": {
+                "artist": "dhruv"
+            },
+
+            "retrograde": {
+                "artist": "dhruv"
+            },
+
+            "moonlight": {
+                "artist": "dhruv"
+            }
+        }
+    },
+
+    "playlist2": {
+        "name": "anotherPlaylist",
+        "id": "41400",
+        "artistPlaylist": false,
+
+        "length": 8,
+        "tracks": {
+            "something": {
+                "artist": "dhruv"
+            },
+
+            "somethingAgain": {
+                "artist": "dhruv"
+            },
+
+            "somethingOnceAgain": {
+                "artist": "dhruv"
+            }
+        }
+    },
+
+    "playlist3": {
+        "name": "oneMorePlaylist",
+        "id": "41400",
+        "artistPlaylist": false,
+
+        "length": 8,
+        "tracks": {
+            "someTrack": {
+                "artist": "dhruv"
+            },
+
+            "someTrack2": {
+                "artist": "dhruv"
+            },
+
+            "someTrack3": {
+                "artist": "dhruv"
+            }
+        }
+    }
+}

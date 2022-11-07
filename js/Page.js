@@ -3,7 +3,7 @@ import {player} from "./Player.js";
 class Page{
     constructor(){
         this.addEventListeners();
-    }
+    };
 
     async addEventListeners(){
         //search event listeners

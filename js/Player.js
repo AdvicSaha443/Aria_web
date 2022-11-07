@@ -1,3 +1,5 @@
+import {database} from "./Data.js";
+
 class PlayerBase{
     constructor(){
         //volume Settings
@@ -99,7 +101,7 @@ class PlayerBase{
     };
 
     //MUSIC PLAYERS RELATED COMMANDS
-    playTrack(data){
+    async playTrack(data){
         console.log(data);
         console.log(data.title + " PLAY FUNCTION");
     };
@@ -108,12 +110,67 @@ class PlayerBase{
         console.log(data.title + " QUEUE FUNCTION");
     };
 
-    heartTrack(data){
+    async heartTrack(data){
         console.log(data.title + " HEART FUNCTION");
     };
 
-    AddTrackToPlaylist(data){
-        console.log(data.title + " ADD TO PLAYLIST FUNCTION");
+    async AddTrackToPlaylist(data){
+        await database.loadAllPlaylist().then((playlistsJson) => {
+            if(JSON.stringify(playlistsJson) == "{}") return alert("You don't have any playlist created");
+
+            //creating modal
+            let popUpBox = document.getElementById('popUpBox');
+            popUpBox.style.display = "block";
+
+            var text = document.createElement("h1");
+            text.innerHTML = "Choose a playlist to append this track";
+            
+            //middle Content
+            var middleDiv = document.createElement("div");
+            middleDiv.className = "middleModalContentDiv";
+            
+            //exit button
+            var closeModalDiv = document.createElement("div");
+            closeModalDiv.className = "closeModal";
+            
+            var exitButton = document.createElement("button");
+            exitButton.className = "closeModalButton";
+            exitButton.innerHTML = "X";
+            
+            exitButton.addEventListener("click", () => {
+                document.getElementById('popUpBox').style.display = "none";
+                document.getElementById('popUpOverlay').style.display = "none";
+
+                document.getElementById("box").remove();
+            });
+            
+            closeModalDiv.appendChild(exitButton);
+
+            //making select options
+
+            var playlistSelect = document.createElement("select");
+            playlistSelect.name = "playlist_selection";
+            playlistSelect.size = Object.keys(playlistsJson).length;
+
+            for(var elem in playlistsJson){
+                var playlistOption = document.createElement("option");
+                playlistOption.value = playlistsJson[elem];
+
+                playlistSelect.appendChild(playlistOption);
+            };
+
+            middleDiv.appendChild(playlistSelect);
+
+            var box = document.createElement("div");
+            box.className = "box";
+            box.id = "box";
+            
+            box.appendChild(text); //POPUP BOX
+            box.appendChild(middleDiv);
+            box.appendChild(closeModalDiv); //POPUP BOX
+
+            popUpBox.appendChild(box);
+        });
     };
 
     //event listeners 
@@ -169,8 +226,8 @@ class PlayerBase{
             };
         });
 
-        document.getElementById("heartButton").addEventListener("click", () => {this.heartTrack(this.currentTrack)});
-        document.getElementById("playlistButton").addEventListener("click", () => {this.AddTrackToPlaylist(this.currentTrack)});
+        document.getElementById("heartButton").addEventListener("click", async () => {await this.heartTrack(this.currentTrack)});
+        document.getElementById("playlistButton").addEventListener("click", async () => {await this.AddTrackToPlaylist(this.currentTrack)});
 
         var loopButton = document.getElementById("loopButton");
         Array.from(document.getElementsByClassName("loopBUTTON")).forEach(elem => {
