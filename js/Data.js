@@ -12,6 +12,12 @@ class Data{
 
         return playlistJson;
     };
+
+    async appendTrackIntoPlaylist(track, playlist){
+        const playlists = await this.loadAllPlaylist();
+
+        console.log(playlists);
+    };
 };
 
 export const database = new Data();

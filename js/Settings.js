@@ -5,6 +5,8 @@ class SettingsBase{
         //page settings
         this.currentPage = "";
         this.currentPageHeader = "";
+
+        this.addEventListeners();
     };//
 
     //functions related for changing page
@@ -20,7 +22,7 @@ class SettingsBase{
     
             this.currentPage = page;
             this.currentPageHeader = pageHeader;
-        }else{return};
+        }else return;
     };
 
     changePageMain(page){

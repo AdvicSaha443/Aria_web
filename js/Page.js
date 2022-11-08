@@ -8,6 +8,7 @@ class Page{
     async addEventListeners(){
         //search event listeners
         var searchInput = document.getElementById("musicSearchInput");
+        
         searchInput.addEventListener('keydown', async (ev) => {
             if(ev.key == "Enter"){
                 var val = searchInput.value;
@@ -56,6 +57,11 @@ class Page{
                 });
             });
         });
+
+        //navigation event listeners
+        /*const buttonsMap = {
+            ""
+        }*/
     };
 
     // SEARCH PAGE - APPENDING TILES

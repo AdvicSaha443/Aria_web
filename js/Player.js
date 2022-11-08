@@ -80,7 +80,7 @@ class PlayerBase{
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': '02eef9a4a7msh525f4f469486b12p1553eajsn21901f45d9cd',
+                'X-RapidAPI-Key': '',
                 'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
             }
         };
@@ -128,13 +128,39 @@ class PlayerBase{
             //middle Content
             var middleDiv = document.createElement("div");
             middleDiv.className = "middleModalContentDiv";
+
+            //submit button
+            var submitDiv = document.createElement("div");
+            submitDiv.className = "submitButtonModalDiv";
+
+            var submitButton = document.createElement("button");
+            submitButton.className = "ModalButton";
+            submitButton.innerHTML = "Done";
+
+            submitButton.addEventListener("click", () => {
+                //getting values
+                const selectListValue = document.getElementById("playlistModalSelectionList").value;
+                
+                if(selectListValue !== ""){
+                    //closing the modal!!
+                    document.getElementById('popUpBox').style.display = "none";
+                    document.getElementById('popUpOverlay').style.display = "none";
+                    document.getElementById("box").remove();
+
+                    //pushing the data in the database
+                    database.appendTrackIntoPlaylist(data, selectListValue);
+                }else{
+                    return alert("Select a playlist to add the song!");
+                };
+            });
+            submitDiv.appendChild(submitButton);
             
             //exit button
             var closeModalDiv = document.createElement("div");
             closeModalDiv.className = "closeModal";
             
             var exitButton = document.createElement("button");
-            exitButton.className = "closeModalButton";
+            exitButton.className = "ModalButton";
             exitButton.innerHTML = "X";
             
             exitButton.addEventListener("click", () => {
@@ -150,11 +176,13 @@ class PlayerBase{
 
             var playlistSelect = document.createElement("select");
             playlistSelect.name = "playlist_selection";
+            playlistSelect.id = "playlistModalSelectionList";
             playlistSelect.size = Object.keys(playlistsJson).length;
 
             for(var elem in playlistsJson){
                 var playlistOption = document.createElement("option");
-                playlistOption.value = playlistsJson[elem];
+                playlistOption.value = playlistsJson[elem].name;
+                playlistOption.innerHTML = playlistsJson[elem].name;
 
                 playlistSelect.appendChild(playlistOption);
             };
@@ -167,6 +195,7 @@ class PlayerBase{
             
             box.appendChild(text); //POPUP BOX
             box.appendChild(middleDiv);
+            box.appendChild(submitDiv);
             box.appendChild(closeModalDiv); //POPUP BOX
 
             popUpBox.appendChild(box);

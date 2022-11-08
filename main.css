@@ -42,6 +42,15 @@ body, html{
     display: none;
 }
 
+#popUpBox #box select{
+    width: 200px;
+    
+    margin: 0px;
+    padding: 0px;
+
+    margin-bottom: 10px;
+}
+
 button{
     cursor: pointer;
 }
