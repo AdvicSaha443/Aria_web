@@ -1,4 +1,5 @@
 import {database} from "./Data.js";
+import {rapidApiKey} from "./Keys.js";
 
 class PlayerBase{
     constructor(){
@@ -80,7 +81,7 @@ class PlayerBase{
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': '',
+                'X-RapidAPI-Key': rapidApiKey,
                 'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
             }
         };
