@@ -207,15 +207,15 @@ class PlayerBase{
 
     async stop(){
         console.log("stop function has been called!");
-    }
+    };
 
     async pause(){
         console.log("pause function has been called!");
-    }
+    };
 
     async continue(){
         console.log("continue function has been called!");
-    }
+    };
 
     //event listeners 
     addEventListeners(){
@@ -276,23 +276,22 @@ class PlayerBase{
         var loopButton = document.getElementById("loopButton");
         Array.from(document.getElementsByClassName("loopBUTTON")).forEach(elem => {
             elem.addEventListener("click", () => {
-                console.log("hello");
             //handling loop button click
                 if(this.repeatTrack){
 
                     //changing button state
-                    document.getElementById("loopButton-once").style.display = "none";
+                    document.getElementById("loopButtonOnce").style.display = "none";
                     loopButton.style.display = "block";
 
                     //changing data members:
-                    this.repeatTrack = true;
+                    this.repeatTrack = false;
                 }else{
 
                     //changing button state
                     document.getElementById("loopButtonOnce").style.display = "block";
                     document.getElementById("loopButton").style.display = "none";
 
-                    this.repeatTrack = false;
+                    this.repeatTrack = true;
                 };
             });
         });

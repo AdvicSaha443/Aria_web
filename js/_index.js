@@ -13,9 +13,9 @@ window.onload = () => {
         settings.checkUserPageType(false);
         player.changeBottomPlayerState(true, true);
     }else{
-        settings.changePage("playlistPage");
-        page.appendPlaylistTiles();
+        settings.changePage("playerPage");
         settings.checkUserPageType(true);
+        //page.appendPlaylistTiles();
     };
 };
 

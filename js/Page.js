@@ -236,6 +236,11 @@ class Page{
                 h2_2.appendChild(icon2);
                 queueButton.appendChild(h2_2);
 
+                queueButton.addEventListener("click", () => {
+                    for(var item in playlistsJson[elem].tracks)
+                        player.appendToQueue(playlistsJson[elem].tracks[item]);
+                });
+
                 //extra options button
 
                 const extraButton = document.createElement("button");
@@ -249,12 +254,49 @@ class Page{
                 extraButton.appendChild(h2_3);
 
                 extraButton.addEventListener("click", () => {
-
+                    const docElem = document.getElementById(`playlistPageDropDownListDiv${elem}`)
+                    docElem.style.display = (docElem.style.display == "block"?"none":"block");
                 });
+
+                //drop down menu list
+                const dropDownList = document.createElement("div");
+                dropDownList.className = `playlistPageDropDownListDiv${elem}`;
+                dropDownList.id = `playlistPageDropDownListDiv${elem}`;
+                //const buttonOptions = ["Push", "Copy", "Delete"];
+
+                const button1 = document.createElement("button");
+                const button2 = document.createElement("button");
+                const button3 = document.createElement("button");
+
+                button1.className = "playlistPageDropDownButton";
+                button2.className = "playlistPageDropDownButton";
+                button3.className = "playlistPageDropDownButton";
+
+                button1.id = "playlistPagePushToPlaylistButton";
+                button2.id = "playlistPageCopyPlaylistButton";
+                button3.id = "playlistPageDeletePlaylistButton";
+
+                button1.addEventListener("click", () => {
+                    console.log("push button has been clicked!");
+                });
+
+                button2.addEventListener("click", () => {
+                    console.log("copy button has been clicked!");
+                });
+
+                button3.addEventListener("click", () => {
+                    console.log("delete button has been clicked!");
+                });
+
+                dropDownList.appendChild(button1);
+                dropDownList.appendChild(button2);
+                dropDownList.appendChild(button3);
+                dropDownList.style.display = "none";
 
                 rightDiv.appendChild(playButton);
                 rightDiv.appendChild(queueButton);
                 rightDiv.appendChild(extraButton);
+                rightDiv.appendChild(dropDownList);
 
                 liTag.appendChild(leftDiv);
                 liTag.appendChild(rightDiv);
