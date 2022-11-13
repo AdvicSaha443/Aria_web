@@ -2,19 +2,24 @@
     "playlist1": {
         "name": "rapunzel",
         "id": "41400",
+        "coverart": "https://is5-ssl.mzstatic.com/image/thumb/Music116/v4/a4/c6/71/a4c6714b-650b-e235-33b5-5acb1f99915d/886449732470.jpg/400x400cc.jpg",
+        "author": "Dhruv",
         "artistPlaylist": true,
 
         "length": 8,
         "tracks": {
             "grateful": {
+                "title": "grateful",
                 "artist": "dhruv"
             },
 
             "retrograde": {
+                "title": "retrograde",
                 "artist": "dhruv"
             },
 
             "moonlight": {
+                "title": "moonlight",
                 "artist": "dhruv"
             }
         }
@@ -23,19 +28,24 @@
     "playlist2": {
         "name": "anotherPlaylist",
         "id": "41400",
-        "artistPlaylist": false,
+        "coverart": "https://is2-ssl.mzstatic.com/image/thumb/Music114/v4/8c/b0/2a/8cb02a2f-2718-719b-2ae9-e9af99de5e15/190296882814.jpg/400x400cc.jpg",
+        "author": "Advic",
+        "artistPlaylist": true,
 
         "length": 8,
         "tracks": {
             "something": {
+                "title": "something track 1",
                 "artist": "dhruv"
             },
 
             "somethingAgain": {
+                "title": "something track 2",
                 "artist": "dhruv"
             },
 
             "somethingOnceAgain": {
+                "title": "something track 3",
                 "artist": "dhruv"
             }
         }
@@ -44,19 +54,24 @@
     "playlist3": {
         "name": "oneMorePlaylist",
         "id": "41400",
-        "artistPlaylist": false,
+        "coverart": "https://is2-ssl.mzstatic.com/image/thumb/Music114/v4/8c/b0/2a/8cb02a2f-2718-719b-2ae9-e9af99de5e15/190296882814.jpg/400x400cc.jpg",
+        "author": "Advic",
+        "artistPlaylist": true,
 
         "length": 8,
         "tracks": {
             "someTrack": {
+                "title": "some track 1",
                 "artist": "dhruv"
             },
 
             "someTrack2": {
+                "title": "some track 2",
                 "artist": "dhruv"
             },
 
             "someTrack3": {
+                "title": "some track 3",
                 "artist": "dhruv"
             }
         }

@@ -77,7 +77,7 @@ class PlayerBase{
     };
 
     //api search command
-    async searchTracks(query){
+    async searchTracks(query, lim = 5){
         const options = {
             method: 'GET',
             headers: {
@@ -86,9 +86,11 @@ class PlayerBase{
             }
         };
 
+        console.log(lim);
+
         var data;
         
-        await fetch(`https://shazam.p.rapidapi.com/search?term=${query}&locale=en-US&offset=0&limit=5`, options)
+        await fetch(`https://shazam.p.rapidapi.com/search?term=${query}&locale=en-US&offset=0&limit=${lim}`, options)
         .then((response) => {
             data = response.json();
             console.log(data);
@@ -202,6 +204,18 @@ class PlayerBase{
             popUpBox.appendChild(box);
         });
     };
+
+    async stop(){
+        console.log("stop function has been called!");
+    }
+
+    async pause(){
+        console.log("pause function has been called!");
+    }
+
+    async continue(){
+        console.log("continue function has been called!");
+    }
 
     //event listeners 
     addEventListeners(){

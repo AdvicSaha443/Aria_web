@@ -10,16 +10,16 @@ class Data{
 
     async loadAllPlaylist(){
 
-        this.firebaseApp.auth().signInWithEmailAndPassword("test@gmail.com", "test@123");
+        /*this.firebaseApp.auth().signInWithEmailAndPassword("test@gmail.com", "test@123");*/
 
-        /*var playlistJson;
+        var playlistJson;
 
         await fetch("./data/createdPlaylist.json")
         .then(response  => response.json())
         .then(data => playlistJson = data)
         .catch(err => console.log(err));
 
-        return playlistJson;*/
+        return playlistJson;
     };
 
     async appendTrackIntoPlaylist(track, playlist){

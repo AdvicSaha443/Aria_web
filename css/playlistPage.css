@@ -1,0 +1,77 @@
+.playlistPage{
+    width: 100%;
+    
+    display: flex;
+}
+
+.playlistPage #title{
+    width: 100%;
+
+    margin: 0px;
+    padding: 0px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.playlistPage #title h2{
+    color: #fff;
+    font-weight: lighter;
+}
+
+.playlistPage .playlistPageContent{
+    display: flex;
+    flex-direction: column;
+}
+
+.playlistPage .playlistPageContent li{
+    margin: 0px;
+    padding: 0px;
+
+    display: flex;
+    justify-content: space-between;
+
+    background: #fff;
+    border: 5px;
+    border-color: aquamarine;
+    border-radius: 5px;
+}
+
+.playlistPage .playlistPageContent li .playlistPageLeftContent{
+    display: flex;
+
+    align-items: center;
+}
+
+.playlistPage .playlistPageContent li .playlistPageLeftContent .playlistPageLeftContentImageDiv img{
+    width: 75px;
+    height: 75px;
+
+    border-radius: 100%;
+}
+
+.playlistPage .playlistPageContent li .playlistPageLeftContent .leftDivSubContentDiv{
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 5px;
+}
+
+.playlistPage .playlistPageContent li .playlistPageLeftContent .leftDivSubContentDiv h2{
+    color: #000;
+
+    padding: 0px;
+    margin: 0px;
+}
+
+.playlistPage .playlistPageContent li .playlistPageRightContent{
+    display: flex;
+    align-items: center;
+}
+
+.playlistPage .playlistPageContent li .playlistPageRightContent button{
+    background: none;
+    border: none;
+
+    height: fit-content;
+}

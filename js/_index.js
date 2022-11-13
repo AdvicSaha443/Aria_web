@@ -13,7 +13,8 @@ window.onload = () => {
         settings.checkUserPageType(false);
         player.changeBottomPlayerState(true, true);
     }else{
-        settings.changePage("searchPage");
+        settings.changePage("playlistPage");
+        page.appendPlaylistTiles();
         settings.checkUserPageType(true);
     };
 };
