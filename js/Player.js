@@ -1,5 +1,7 @@
 import {database} from "./Data.js";
+import {settings} from "./Settings.js";
 import {rapidApiKey} from "./Keys.js";
+import {Modal} from "./Tools.js";
 
 class PlayerBase{
     constructor(){
@@ -147,7 +149,7 @@ class PlayerBase{
                 if(selectListValue !== ""){
                     //closing the modal!!
                     document.getElementById('popUpBox').style.display = "none";
-                    document.getElementById('popUpOverlay').style.display = "none";
+                    //document.getElementById('popUpOverlay').style.display = "none";
                     document.getElementById("box").remove();
 
                     //pushing the data in the database
@@ -168,7 +170,7 @@ class PlayerBase{
             
             exitButton.addEventListener("click", () => {
                 document.getElementById('popUpBox').style.display = "none";
-                document.getElementById('popUpOverlay').style.display = "none";
+                //document.getElementById('popUpOverlay').style.display = "none";
 
                 document.getElementById("box").remove();
             });
@@ -244,18 +246,35 @@ class PlayerBase{
                 
                 //volume
                 case "ArrowUp":
+                    if(this.currentVolume !== 100) this.changeVolume(this.currentVolume+1);
+
                     console.log("volume up");
                     break;
 
                 case "ArrowDown":
+                    if(this.currentVolume !== 0) this.changeVolume(this.currentVolume-1);
+
                     console.log("volume down");
                     break;
                 
                 case "m":
+                    if(this.currentVolume !== 0) this.changeVolume(0);
+                    else this.changeVolume(this.prevVolume);
+
                     console.log("mute");
                     break;
                 
                 case "s":
+                    if(settings.currentPage !== "searchPage"){
+                        Modal.create();
+                        Modal.setHeaderMessage("Search for a song!");
+                        Modal.createInputBox();
+                        Modal.createDoneButton("Search", "modalInputBox", "Please Enter a search query to search for it", (selectedValue) => {
+                            console.log(selectedValue + " the callback function has been called!!");
+                        });
+                        
+                    };
+
                     console.log("search pop up");
                     break;
 

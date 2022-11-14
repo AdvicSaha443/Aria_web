@@ -15,7 +15,7 @@ class Page{
                 var val = searchInput.value;
                 if(val == " " || val == "" || val == null || val == undefined || val == player.prevSearchQuery) return;
                 else{
-                    await player.searchTracks(val, 10).then((response) => {
+                    await player.searchTracks(val, 5).then((response) => {
                         console.log(response);
 
                         //removing previous tiles
@@ -40,7 +40,7 @@ class Page{
             var val = searchInput.value;
             if(val == " " || val == "" || val == null || val == undefined || val == player.prevSearchQuery) return;
 
-            await player.searchTracks(val, 10).then((response) => {
+            await player.searchTracks(val, 5).then((response) => {
                 console.log(response);
 
                 //removing previous tiles

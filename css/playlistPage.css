@@ -75,3 +75,17 @@
 
     height: fit-content;
 }
+
+.playlistPage .createPlaylistButtonDiv #createPlaylistButton{
+    background: none;
+    border: none;
+
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.playlistPage .createPlaylistButtonDiv #createPlaylistButton h2{
+    margin: 0px;
+    padding: 0px;
+}
