@@ -1,0 +1,2 @@
+~ making the user type the name of the playlist to delete it by creating a modal.
+~ connecting discord with this mongoDB, and be able to play playlist on discord with aria_web playlists.

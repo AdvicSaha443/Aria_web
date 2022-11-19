@@ -123,87 +123,13 @@ class PlayerBase{
         await database.loadAllPlaylist().then((playlistsJson) => {
             if(JSON.stringify(playlistsJson) == "{}") return alert("You don't have any playlist created");
 
-            //creating modal
-            let popUpBox = document.getElementById('popUpBox');
-            popUpBox.style.display = "block";
-
-            var text = document.createElement("h1");
-            text.innerHTML = "Choose a playlist to append this track";
-            
-            //middle Content
-            var middleDiv = document.createElement("div");
-            middleDiv.className = "middleModalContentDiv";
-
-            //submit button
-            var submitDiv = document.createElement("div");
-            submitDiv.className = "submitButtonModalDiv";
-
-            var submitButton = document.createElement("button");
-            submitButton.className = "ModalButton";
-            submitButton.innerHTML = "Done";
-
-            submitButton.addEventListener("click", () => {
-                //getting values
-                const selectListValue = document.getElementById("playlistModalSelectionList").value;
-                
-                if(selectListValue !== ""){
-                    //closing the modal!!
-                    document.getElementById('popUpBox').style.display = "none";
-                    //document.getElementById('popUpOverlay').style.display = "none";
-                    document.getElementById("box").remove();
-
-                    //pushing the data in the database
-                    database.appendTrackIntoPlaylist(data, selectListValue);
-                }else{
-                    return alert("Select a playlist to add the song!");
-                };
+            Modal.new(true);
+            Modal.setHeaderMessage("Choose a playlist to append this track");
+            Modal.createDropDownList(false, playlistsJson);
+            Modal.createDoneButton("Append", "modalDropDownList", "You haven't selected a playlist to append this track!", true, (selectedValue) => {
+                database.appendTrackIntoPlaylist(data, selectedValue);
             });
-            submitDiv.appendChild(submitButton);
-            
-            //exit button
-            var closeModalDiv = document.createElement("div");
-            closeModalDiv.className = "closeModal";
-            
-            var exitButton = document.createElement("button");
-            exitButton.className = "ModalButton";
-            exitButton.innerHTML = "X";
-            
-            exitButton.addEventListener("click", () => {
-                document.getElementById('popUpBox').style.display = "none";
-                //document.getElementById('popUpOverlay').style.display = "none";
-
-                document.getElementById("box").remove();
-            });
-            
-            closeModalDiv.appendChild(exitButton);
-
-            //making select options
-
-            var playlistSelect = document.createElement("select");
-            playlistSelect.name = "playlist_selection";
-            playlistSelect.id = "playlistModalSelectionList";
-            playlistSelect.size = Object.keys(playlistsJson).length;
-
-            for(var elem in playlistsJson){
-                var playlistOption = document.createElement("option");
-                playlistOption.value = playlistsJson[elem].name;
-                playlistOption.innerHTML = playlistsJson[elem].name;
-
-                playlistSelect.appendChild(playlistOption);
-            };
-
-            middleDiv.appendChild(playlistSelect);
-
-            var box = document.createElement("div");
-            box.className = "box";
-            box.id = "box";
-            
-            box.appendChild(text); //POPUP BOX
-            box.appendChild(middleDiv);
-            box.appendChild(submitDiv);
-            box.appendChild(closeModalDiv); //POPUP BOX
-
-            popUpBox.appendChild(box);
+            Modal.createCloseButton();
         });
     };
 
@@ -236,8 +162,15 @@ class PlayerBase{
         document.getElementById("volumeButton").addEventListener("click", () => {this.changeVolumeState()});
 
         //keyboard event listeners
-        document.addEventListener("keydown", (ev) => {
+        document.addEventListener("keydown", async (ev) => {
+            //some hierarchy methods
+            if(ev.key == "Escape"){
+                if(Modal.active) Modal.remove();
+                console.log("settings pop up and other commands as well");
+            };
+
             if(ev.target.nodeName === "INPUT") return;
+            ev.preventDefault();
 
             switch(ev.key){
                 case " ":
@@ -266,25 +199,36 @@ class PlayerBase{
                 
                 case "s":
                     if(settings.currentPage !== "searchPage"){
-                        Modal.create();
+                        Modal.new(true);
+
                         Modal.setHeaderMessage("Search for a song!");
                         Modal.createInputBox();
-                        Modal.createDoneButton("Search", "modalInputBox", "Please Enter a search query to search for it", (selectedValue) => {
+
+                        Modal.createDoneButton("Search", "modalInputBox", "Please Enter a search query to search for it", true, (selectedValue) => {
                             console.log(selectedValue + " the callback function has been called!!");
                         });
-                        
+                        Modal.createCloseButton();
+                    }else{
+                        document.getElementById("musicSearchInput").focus();
                     };
 
-                    console.log("search pop up");
-                    break;
-
-                case "Escape":
-                    console.log("settings pop up and other commands as well");
                     break;
                 
                 //play list related options
                 case "a":
-                    console.log("something related for adding it to a playlist ");
+
+                    await database.loadAllPlaylist().then((playlistsJson) => {
+                        if(!Object.keys(playlistsJson).length) return alert("You don't have any playlist created!");
+
+                        Modal.new(true);
+                        Modal.setHeaderMessage("Choose a playlist to append this track");
+                        Modal.createDropDownList(false, playlistsJson);
+                        Modal.createDoneButton("Append", "modalDropDownList", "You haven't selected a playlist to append this track!", true, (selectedValue) => {
+                            database.appendTrackIntoPlaylist(this.currentTrack, selectedValue);
+                        });
+                        Modal.createCloseButton();
+                    });
+
                     break;
             };
         });
