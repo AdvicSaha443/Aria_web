@@ -4,10 +4,11 @@
         <title>Aria</title>
 
         <script src="https://unpkg.com/phosphor-icons"></script>
-        <script src="./js/_index.js" type="module"></script>
+        <script defer src="./js/_index.js" type="module"></script>
 
-        <link rel="stylesheet" href="./css/main.css">
-        <link rel="stylesheet" href="./css/playlistPage.css">
+        <link defer rel="stylesheet" href="./css/main.css">
+        <link defer rel="stylesheet" href="./css/playlistPage.css">
+        <link defer rel="stylesheet" href="./css/modal.css">
 
     </head>
     <body>
@@ -36,7 +37,7 @@
         <div class="content" id="content">
 
             <!--PLAYER PAGE IS STARTING FROM HERE-->
-            <div class="playerPage Page" id="playerPage" style="display: none" onclick="changePageMan('player')">
+            <div class="playerPage Page" id="playerPage" style="display: none">
                 <div class="songImage">
                     <img src="./assets/image.jpg" alt="Image">
                 </div>
@@ -48,7 +49,7 @@
             <div class="searchPage Page" id="searchPage" style="display: none">
                 <div class="searchPageContent" id="searchPageContent">
                     <div class="musicSearchDiv" id="musicSearchDiv">
-                        <input id="musicSearchInput" class="musicSearchInput" type="text" placeholder="Search for Track/Artist">
+                        <input id="musicSearchInput" class="musicSearchInput" type="text" placeholder="Search for Track/Artist" autocomplete="off">
                         <button class="musicSearchButton" id="musicSearchButton"><h2><i class="ph-magnifying-glass"></i></h2></button>
 
                     </div>
@@ -86,16 +87,17 @@
                 <div id="title" class="title">
                     <h2>Your Playlist</h2>
                 </div>
-
-                <div class="playlistPageContent" id="playlistPageContent">
+                <div class="playlistPageMainContent">
+                    <div class="playlistPageContent" id="playlistPageContent">
                     
-                </div>
+                    </div>
 
-                <div class="createPlaylistButtonDiv" id="createPlaylistButtonDIv">
-                    <button class="createPlaylistButton" id="createPlaylistButton">
-                        <h2><i class="ph-plus"></i></h2>
-                    </button>
-                </div>
+                    <div class="createPlaylistButtonDiv" id="createPlaylistButtonDIv">
+                        <button class="createPlaylistButton" id="createPlaylistButton">
+                            <h2><i class="ph-plus"></i></h2>
+                        </button>
+                    </div>
+                </div>  
             </div>
 
             <div class="settingsPage Page" id="settingsPage" style="display: none">

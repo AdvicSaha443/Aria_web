@@ -75,5 +75,83 @@
                 "artist": "dhruv"
             }
         }
+    },
+
+    "playlist4": {
+        "name": "Know I'm Thinking about you",
+        "id": "41400",
+        "coverart": "https://is2-ssl.mzstatic.com/image/thumb/Music114/v4/8c/b0/2a/8cb02a2f-2718-719b-2ae9-e9af99de5e15/190296882814.jpg/400x400cc.jpg",
+        "author": "Advic",
+        "artistPlaylist": true,
+
+        "length": 8,
+        "tracks": {
+            "someTrack": {
+                "title": "some track 1",
+                "artist": "dhruv"
+            },
+
+            "someTrack2": {
+                "title": "some track 2",
+                "artist": "dhruv"
+            },
+
+            "someTrack3": {
+                "title": "some track 3",
+                "artist": "dhruv"
+            }
+        }
+    },
+
+    "playlist5": {
+        "name": "This is Joji",
+        "id": "41400",
+        "coverart": "https://is5-ssl.mzstatic.com/image/thumb/Music128/v4/73/be/51/73be5115-b424-3075-8591-f0e5be0e3561/190296940323.jpg/400x400cc.jpg",
+        "author": "Joji",
+        "artistPlaylist": true,
+
+        "length": 8,
+        "tracks": {
+            "someTrack": {
+                "title": "some track 1",
+                "artist": "dhruv"
+            },
+
+            "someTrack2": {
+                "title": "some track 2",
+                "artist": "dhruv"
+            },
+
+            "someTrack3": {
+                "title": "some track 3",
+                "artist": "dhruv"
+            }
+        }
+    },
+
+    "playlist6": {
+        "name": "Perfect",
+        "id": "41400",
+        "coverart": "https://is3-ssl.mzstatic.com/image/thumb/Music111/v4/2d/1c/4f/2d1c4fd7-018c-0529-693b-c67fea53b698/190295851286.jpg/400x400cc.jpg",
+        "author": "Advic Saha",
+        "artistPlaylist": true,
+
+        "length": 8,
+        "tracks": {
+            "someTrack": {
+                "title": "some track 1",
+                "artist": "dhruv"
+            },
+
+            "someTrack2": {
+                "title": "some track 2",
+                "artist": "dhruv"
+            },
+
+            "someTrack3": {
+                "title": "some track 3",
+                "artist": "dhruv"
+            }
+        }
     }
 }

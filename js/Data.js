@@ -27,6 +27,10 @@ class Data{
 
         console.log(playlists);
     };
+
+    async createNewPlaylist(playlistArr){
+        console.log(playlistArr);
+    };
 };
 
 export const database = new Data();

@@ -1,5 +1,6 @@
 import {database} from "./Data.js";
 import {player} from "./Player.js";
+import { Modal } from "./Tools.js";
 
 class Page{
     constructor(){
@@ -57,6 +58,27 @@ class Page{
                     this.appendAuthorTiles(elem.artist);
                 });
             });
+        });
+
+        document.getElementById("createPlaylistButton").addEventListener("click", () => {
+
+            Modal.new(false);
+            Modal.setHeaderMessage("Create a playlist!");
+            Modal.createMultipleInputBox("Enter playlist Name", "Enter playlist Author Name");
+            Modal.createDoneButton("Create", ["input*2"], "Please enter the name of the playlist in order to create it!", false, async (selectedValue) => {
+                await database.loadAllPlaylist().then((playlistsJson) => {
+                    var playlistNames = [];
+                    for(var elem in playlistsJson) playlistNames.push(elem);
+
+                    playlistNames.sort();
+                    let name = "playlist" + (parseInt(playlistNames[(playlistNames.length-1)].replace("playlist", ""))+1);
+                    
+                    //selected value -> playlist name, playlist author name
+                    database.createNewPlaylist([name, ...selectedValue]);
+                });
+            });
+            Modal.createCloseButton();
+            
         });
 
         document.getElementById("playlistNav").addEventListener("click", () => {this.appendPlaylistTiles()});
@@ -242,7 +264,6 @@ class Page{
                 });
 
                 //extra options button
-
                 const extraButton = document.createElement("button");
                 const h2_3 = document.createElement("h2");
                 const icon3 = document.createElement("i");
@@ -253,14 +274,14 @@ class Page{
                 h2_3.appendChild(icon3);
                 extraButton.appendChild(h2_3);
 
-                extraButton.addEventListener("click", () => {
-                    const docElem = document.getElementById(`playlistPageDropDownListDiv${elem}`)
+                extraButton.addEventListener("click", (ev) => {
+                    const docElem = document.getElementById(`playlistPageDropDownListDiv${elem}`);
                     docElem.style.display = (docElem.style.display == "block"?"none":"block");
                 });
 
                 //drop down menu list
                 const dropDownList = document.createElement("div");
-                dropDownList.className = `playlistPageDropDownListDiv${elem}`;
+                dropDownList.className = `playlistPageDropDownList`;
                 dropDownList.id = `playlistPageDropDownListDiv${elem}`;
                 //const buttonOptions = ["Push", "Copy", "Delete"];
 

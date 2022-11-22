@@ -14,7 +14,7 @@ export class Modal{
     };
 
     static setHeaderMessage(msg){
-        let header = document.createElement("h2");
+        let header = document.createElement("h1");
         header.innerHTML = msg;
 
         document.getElementById("box").appendChild(header);
@@ -23,9 +23,27 @@ export class Modal{
     static createInputBox(){
         let inputBox = document.createElement("input");
         inputBox.id = "modalInputBox";
+        inputBox.autocomplete = "off";
         
         document.getElementById("box").appendChild(inputBox);
         inputBox.focus();
+    };
+
+    static createMultipleInputBox(...headerMessages){
+        for(var i = 0; i<=(headerMessages.length-1); i++){
+            let inputBox = document.createElement("input");
+            inputBox.id = `modalInputBox${i}`;
+            inputBox.className = "modalInputBox";
+
+            let h3_ = document.createElement("h3");
+            h3_.id = `modalHeaderMessage${i}`;
+            h3_.className = "modalHeaderMessage";
+            h3_.innerHTML = headerMessages[i];
+
+            let box = document.getElementById("box");
+            box.appendChild(h3_);
+            box.appendChild(inputBox);
+        };
     };
 
     static createDropDownList(expanded, options){
@@ -58,18 +76,42 @@ export class Modal{
         let removeFunction = () => {this.remove()};
 
         function handleSubmition(){
-            //getting values
-            const selectListValue = document.getElementById(valueCheckId).value;
-            
-            if(selectListValue !== ""){
-                //closing the modal!!
-                removeFunction();
+            if(Array.isArray(valueCheckId)){
+                //const knownMethods = ["input", "dropDown"];
+                const values = [];
+                let check = false;
 
-                //calling the callback function defined by the user
-                
-                callbackFunction(selectListValue);
+                Array.from(valueCheckId).forEach((elem) => {
+                    let count = elem.includes("input")?elem.replace("input*", ""):elem.replace("dropDown*", "");
+
+                    for(var i = 0; i<count; i++){
+                        let inputValue = document.getElementById((elem.includes("input")?`modalInputBox${i}`:`modalDropDownList${i}`)).value;
+                        
+                        if(inputValue !== ""){
+                            values.push(inputValue);
+                        }else{
+                            return alert("Please enter all the values!");
+                        };
+                    };
+
+                    check = true;
+                });
+
+                if(check) callbackFunction(values);
             }else{
-                return alert(altMessage);
+
+                //getting values
+                const selectListValue = document.getElementById(valueCheckId).value;
+                
+                if(selectListValue !== ""){
+                    //closing the modal!!
+                    removeFunction();
+
+                    //calling the callback function defined by the user
+                    callbackFunction(selectListValue);
+                }else{
+                    return alert(altMessage);
+                };
             };
         };
 

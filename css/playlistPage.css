@@ -1,7 +1,13 @@
+/*THIS PAGE CONTAINS THE CSS FOR PLAYLIST PAGE (kinda)*/
+
 .playlistPage{
     width: 100%;
-    
+    height: 100%;
+    position: relative;
+
     display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 .playlistPage #title{
@@ -19,12 +25,26 @@
     font-weight: lighter;
 }
 
-.playlistPage .playlistPageContent{
+.playlistPage .playlistPageMainContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+
+    width: 100%;
+    height: 90%;
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.playlistPage .playlistPageMainContent .playlistPageContent{
     display: flex;
     flex-direction: column;
 }
 
-.playlistPage .playlistPageContent li{
+.playlistPage .playlistPageMainContent .playlistPageContent li{
     margin: 0px;
     padding: 0px;
 
@@ -37,55 +57,70 @@
     border-radius: 5px;
 }
 
-.playlistPage .playlistPageContent li .playlistPageLeftContent{
+.playlistPage .playlistPageMainContent .playlistPageContent li .playlistPageLeftContent{
     display: flex;
 
     align-items: center;
 }
 
-.playlistPage .playlistPageContent li .playlistPageLeftContent .playlistPageLeftContentImageDiv img{
+.playlistPage .playlistPageMainContent .playlistPageContent li .playlistPageLeftContent .playlistPageLeftContentImageDiv img{
     width: 75px;
     height: 75px;
 
     border-radius: 100%;
 }
 
-.playlistPage .playlistPageContent li .playlistPageLeftContent .leftDivSubContentDiv{
+.playlistPage .playlistPageMainContent .playlistPageContent li .playlistPageLeftContent .leftDivSubContentDiv{
     display: flex;
     flex-direction: column;
 
     margin-left: 5px;
 }
 
-.playlistPage .playlistPageContent li .playlistPageLeftContent .leftDivSubContentDiv h2{
+.playlistPage .playlistPageMainContent .playlistPageContent li .playlistPageLeftContent .leftDivSubContentDiv h2{
     color: #000;
 
     padding: 0px;
     margin: 0px;
 }
 
-.playlistPage .playlistPageContent li .playlistPageRightContent{
+.playlistPage .playlistPageMainContent .playlistPageContent li .playlistPageRightContent{
     display: flex;
     align-items: center;
 }
 
-.playlistPage .playlistPageContent li .playlistPageRightContent button{
+.playlistPage .playlistPageMainContent .playlistPageContent li .playlistPageRightContent button{
     background: none;
     border: none;
 
     height: fit-content;
 }
 
-.playlistPage .createPlaylistButtonDiv #createPlaylistButton{
+.playlistPage .playlistPageMainContent .createPlaylistButtonDiv #createPlaylistButton{
     background: none;
     border: none;
 
     color: #fff;
     margin: 0;
     padding: 0;
+    width: 100%;
+    
+    /*position: fixed;*/
+    display: flex;
+    justify-content: right;
 }
 
-.playlistPage .createPlaylistButtonDiv #createPlaylistButton h2{
+.playlistPage .playlistPageMainContent .createPlaylistButtonDiv #createPlaylistButton h2{
     margin: 0px;
     padding: 0px;
+}
+
+.playlistPageDropDownList{
+    position: relative;
+    margin-top: 60px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }

@@ -198,6 +198,8 @@ class PlayerBase{
                     break;
                 
                 case "s":
+                    //why though?
+                    //could replace this to search song and play the first query which it gets
                     if(settings.currentPage !== "searchPage"){
                         Modal.new(true);
 

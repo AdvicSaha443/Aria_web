@@ -6,6 +6,7 @@ import {database} from "./Data.js";
 
 /*console.log(page.test);
 await data.loadAllPlaylist().then(json => console.log(json));*/
+page.appendPlaylistTiles();
 
 window.onload = () => {
     if(!user.logged){
@@ -13,7 +14,7 @@ window.onload = () => {
         settings.checkUserPageType(false);
         player.changeBottomPlayerState(true, true);
     }else{
-        settings.changePage("playerPage");
+        settings.changePage("playlistPage");
         settings.checkUserPageType(true);
         //page.appendPlaylistTiles();
     };
