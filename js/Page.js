@@ -1,5 +1,6 @@
-import {database} from "./Data.js";
-import {player} from "./Player.js";
+import { database } from "./Data.js";
+import { player } from "./Player.js";
+import { user } from "./User.js";
 import { Modal } from "./Tools.js";
 
 class Page{
@@ -64,21 +65,21 @@ class Page{
 
             Modal.new(false);
             Modal.setHeaderMessage("Create a playlist!");
-            Modal.createMultipleInputBox("Enter playlist Name", "Enter playlist Author Name");
-            Modal.createDoneButton("Create", ["input*2"], "Please enter the name of the playlist in order to create it!", false, async (selectedValue) => {
+            Modal.createInputBox("Enter playlist Name");
+            Modal.createDoneButton("Create", "input", "Please enter the name of the playlist in order to create it!", false, async (selectedValue) => {
                 await database.loadAllPlaylist().then((playlistsJson) => {
                     var playlistNames = [];
                     for(var elem in playlistsJson) playlistNames.push(elem);
 
                     playlistNames.sort();
                     let name = "playlist" + (parseInt(playlistNames[(playlistNames.length-1)].replace("playlist", ""))+1);
+                    user.setName("Advic");
                     
                     //selected value -> playlist name, playlist author name
                     database.createNewPlaylist([name, ...selectedValue]);
                 });
             });
             Modal.createCloseButton();
-            
         });
 
         document.getElementById("playlistNav").addEventListener("click", () => {this.appendPlaylistTiles()});

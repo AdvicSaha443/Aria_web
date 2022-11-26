@@ -2,15 +2,24 @@ import {player} from "./Player.js";
 
 class UserBase{
     constructor(){
-        //user details
-        this.name = "";
-        this.id = 0;
-        this.mail = "";
-
-        this.logged = true;
-        //create some type of functions for letting the user log in
-
         this.addEventListener();
+    };
+
+    static name = "Someone";
+    static id = 0;
+    static mail = "";
+
+    static logged = true;
+
+    /**
+     * @param {String} args - User's Name.
+     */
+    set setName(args){
+        this.name = args;
+    };
+
+    get getName(){
+        return this.name;
     };
 
     addEventListener(){

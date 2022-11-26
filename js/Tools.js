@@ -1,4 +1,12 @@
 export class Modal{
+    static active = false;
+    static inputs = [];
+
+    /**
+     * For Creating a new modal
+     * @param {boolean} overwrite - For overwriting any active modal.
+     * @returns {boolean | void}
+     */
     static new(overwrite){
         if(this.active && overwrite) this.remove();
         else if(this.active) return false;
@@ -13,6 +21,10 @@ export class Modal{
         this.active = true;
     };
 
+    /**
+     * Sets the header message for the modal which you're created.
+     * @param {String} msg - Header message for modal.
+     */
     static setHeaderMessage(msg){
         let header = document.createElement("h1");
         header.innerHTML = msg;
@@ -20,17 +32,26 @@ export class Modal{
         document.getElementById("box").appendChild(header);
     };
 
-    static createInputBox(){
+    /**
+     * Creates a input box for user to add any information
+     * @param {String} placeholder - Message for placeholder
+     */
+    static createInputBox(placeholder){
         let inputBox = document.createElement("input");
         inputBox.id = "modalInputBox";
         inputBox.autocomplete = "off";
+        inputBox.placeholder = placeholder;
         
         document.getElementById("box").appendChild(inputBox);
         inputBox.focus();
     };
 
+    /**
+     * Creates Multiple Input boxes at oce
+     * @param  {...String} headerMessages - An Array of multiple input boxes's headerMessage
+     */
     static createMultipleInputBox(...headerMessages){
-        for(var i = 0; i<=(headerMessages.length-1); i++){
+        for(var i = 0; i<headerMessages.length; i++){
             let inputBox = document.createElement("input");
             inputBox.id = `modalInputBox${i}`;
             inputBox.className = "modalInputBox";
@@ -46,6 +67,11 @@ export class Modal{
         };
     };
 
+    /**
+     * Creates a drop down list
+     * @param {boolean} expanded - Expanded form of drop down list
+     * @param {String[]} options - array of options in the drop donw list
+     */
     static createDropDownList(expanded, options){
         let select = document.createElement("select");
         select.id = "modalDropDownList";
@@ -65,6 +91,14 @@ export class Modal{
         document.getElementById("box").appendChild(select);
     };
 
+    /**
+     * Creates a done button and takes callback functions when the button is pressed
+     * @param {String} buttonMessage - Message to be displayed on the button
+     * @param {String} valueCheckId - Id of the input box to check if the info has been added
+     * @param {String} altMessage - An alternative message to be displayed in the alert box
+     * @param {boolean} keyboardBool - for adding keyboard event listeners 
+     * @param {Function} callbackFunction - A callback function which will be called once once the button has been pressed.
+     */
     static createDoneButton(buttonMessage = "Done", valueCheckId, altMessage = "Please Select your value!!", keyboardBool = true, callbackFunction){
         var submitDiv = document.createElement("div");
         submitDiv.className = "submitButtonModalDiv";
@@ -90,14 +124,17 @@ export class Modal{
                         if(inputValue !== ""){
                             values.push(inputValue);
                         }else{
-                            return alert("Please enter all the values!");
+                            return alert("Please enter all the values");
                         };
                     };
 
                     check = true;
                 });
 
-                if(check) callbackFunction(values);
+                if(check){
+                    removeFunction();
+                    callbackFunction(values);
+                };
             }else{
 
                 //getting values
